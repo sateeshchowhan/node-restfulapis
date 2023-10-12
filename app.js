@@ -3,6 +3,9 @@ const app = express();
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+const dotenv = require('dotenv');
+dotenv.config()
+
 
 const productRoutes = require('./api/routes/product');
 const OrderRoutes = require('./api/routes/order');
@@ -15,11 +18,7 @@ const OrderRoutes = require('./api/routes/order');
 //   useUnifiedTopology: true,
 // });
 mongoose.set('strictQuery', false);
-mongoose.connect(
-
-    'mongodb+srv://sateeshchowhan:sateesh18@cluster0.fkuss0m.mongodb.net/'
-
-);
+mongoose.connect(process.env.MONGOOSE_URI);
 // mongoose.set('strictQuery', false);
 // mongoose.connect('mongodb+srv://node-shop:Virat@18@node-rest-shop.xdow63p.mongodb.net/');
 mongoose.Promise = global.Promise;
